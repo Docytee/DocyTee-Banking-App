@@ -10,8 +10,8 @@ const ibmPlexSerif = IBM_Plex_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "DocyTee Bank",
-  description: "DocyTee Banl is a global banking platorm for everyone",
+  title: "DocyTee Banking App",
+  description: "DocyTee Banking App is a global banking platorm for everyone",
   icons: {
     icon: '/icons/logo.svg'
   }
