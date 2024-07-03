@@ -23,6 +23,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 // const formSchema = z.object({
 //   username: z.string().min(2, {
@@ -47,10 +48,6 @@ const AuthForm = ({ type }: { type: string }) => {
   });
 
   // 2. Define a submit handler.
-  // function onSubmit(data: z.infer<typeof formSchema>) {
-  //   console.log(data);
-  // }
-
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
 
@@ -58,20 +55,19 @@ const AuthForm = ({ type }: { type: string }) => {
       // Sign up with Appwrite & create plaid token
 
       if (type === "sign-up") {
-        // const userData = {
-        //   firstName: data.firstName!,
-        //   lastName: data.lastName!,
-        //   address1: data.address1!,
-        //   city: data.city!,
-        //   state: data.state!,
-        //   postalCode: data.postalCode!,
-        //   dateOfBirth: data.dateOfBirth!,
-        //   ssn: data.ssn!,
-        //   email: data.email,
-        //   password: data.password,
-        // };
-        // const newUser = await signUp(userData);
-        const newUser = await signUp(data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address1!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password,
+        };
+        const newUser = await signUp(userData);
         setUser(newUser);
       }
 
@@ -117,7 +113,7 @@ const AuthForm = ({ type }: { type: string }) => {
       </header>
       {user ? (
         <div className="flex flex-col gap-4">
-          {/* <PlaidLink user={user} variant="primary" /> */}
+          <PlaidLink user={user} variant="primary" />
         </div>
       ) : (
         <>
